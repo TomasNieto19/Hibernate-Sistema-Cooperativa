@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="datos.Stock" table="Stock">
+	
+		<id column="idStock" name="idStock">
+		
+			<generator class="identity" />
+			
+		</id>
+		
+
+		<one-to-one name="producto" class="datos.Producto" ></one-to-one>
+		
+		
+		<joined-subclass name="datos.Almacen" table="almacen">
+		
+			<key column="idAlmacen" />
+		
+			<property column="cantDeseable" name="cantDeseable" type="int"/>
+			
+			<property column="cantMinima" name="cantMinima" type="int"/>
+			
+			<set name="lotes" table="lote" order-by="idLote asc" inverse="true" lazy="true" fetch="select">
+			
+				<key column="idAlmacen" not-null="true" />
+				
+				<one-to-many class="datos.Lote" />
+				
+			</set>
+		
+		</joined-subclass>
+
+
+		<joined-subclass name="datos.Pedido" table="pedido">
+		
+			<key column="idPedido" />
+			
+			<set name="notasPedidos" table="notapedido" order-by="idNotaPedido asc" inverse="true" lazy="true" fetch="select">
+			
+				<key column="idPedido" not-null="true" />
+				
+				<one-to-many class="datos.NotaPedido" />
+				
+			</set>
+		
+		</joined-subclass>
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD
+3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+	
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost/bdcooperativa</property><!-- CAMBIAR -->
+		<property name="connection.username">root</property>
+		<property name="connection.password">1317</property>
+		<property name="connection.pool_size">1</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="show_sql">true</property> <!-- MUESTRA SQL CONSOLA -->
+		
+		
+		<!-- MAPEO ENTIDADES -->
+		<mapping resource="mapeos/Lote.hbm.xml" />
+		<mapping resource="mapeos/Cliente.hbm.xml" />
+		<mapping resource="mapeos/Producto.hbm.xml" />	
+		<mapping resource="mapeos/NotaPedido.hbm.xml" />
+		<mapping resource="mapeos/Stock.hbm.xml" />
+		
+		
+	</session-factory>
+	
+</hibernate-configuration>
